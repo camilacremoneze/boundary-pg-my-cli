@@ -1,0 +1,15 @@
+# Compiled binary
+boundary-pg-my-cli
+pgcli-boundary
+
+# Environment config (contains secrets — never commit)
+.env
+
+# macOS
+.DS_Store
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo

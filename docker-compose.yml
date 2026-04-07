@@ -1,0 +1,24 @@
+services:
+  pgcli-boundary:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pgcli-boundary:latest
+    # Load all variables from .env into the container
+    env_file:
+      - .env
+    environment:
+      # X11 display forwarding – set DISPLAY on the host before running.
+      # macOS (XQuartz): export DISPLAY=host.docker.internal:0
+      # Linux:           export DISPLAY=$DISPLAY  (usually :0 or :1)
+      - DISPLAY=${DISPLAY:-:0}
+    volumes:
+      # X11 socket (Linux only; remove on macOS and use TCP via DISPLAY above)
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # Persist Fyne app data (window preferences, etc.)
+      - pgcli_boundary_data:/root/.config/fyne
+    network_mode: host   # simplest for X11 + localhost DB tunnels
+    restart: "no"
+
+volumes:
+  pgcli_boundary_data:
