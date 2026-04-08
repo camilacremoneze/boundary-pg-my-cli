@@ -1,6 +1,6 @@
 # pgcli-boundary
 
-A desktop GUI (Go + [Fyne](https://fyne.io/)) that collapses the entire workflow of connecting to a PostgreSQL, MySQL, or MariaDB database behind [HashiCorp Boundary](https://www.boundaryproject.io/) into three clicks.
+A desktop GUI (Go + [Fyne](https://fyne.io/)) that collapses the entire workflow of connecting to a PostgreSQL, MySQL, or MariaDB database behind [HashiCorp Boundary](https://www.boundaryproject.io/).
 
 ```
 Select environment → Login with SSO → Pick target → pgcli / mycli opens
