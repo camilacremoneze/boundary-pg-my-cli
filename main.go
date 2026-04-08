@@ -484,8 +484,10 @@ func (u *appUI) buildSessionsTab() fyne.CanvasObject {
 		func() fyne.CanvasObject {
 			name := widget.NewLabel("")
 			name.TextStyle = fyne.TextStyle{Bold: true}
-			info := widget.NewLabel("")
-			info.TextStyle = fyne.TextStyle{Italic: true}
+			highlights := widget.NewLabel("")
+			highlights.TextStyle = fyne.TextStyle{Bold: true}
+			addr := widget.NewLabel("")
+			addr.TextStyle = fyne.TextStyle{Italic: true}
 
 			// Teal accent bar on the left edge of each row.
 			accent := canvas.NewRectangle(color.NRGBA{R: 0x00, G: 0xc8, B: 0xb4, A: 0xff})
@@ -500,8 +502,8 @@ func (u *appUI) buildSessionsTab() fyne.CanvasObject {
 			// btns [0]=launchBtn [1]=copyBtn [2]=killBtn
 			btns := container.NewHBox(launchBtn, copyBtn, killBtn)
 
-			// textBlock [0]=name [1]=info
-			textBlock := container.NewVBox(name, info)
+			// textBlock [0]=name [1]=highlights [2]=addr
+			textBlock := container.NewVBox(name, highlights, addr)
 
 			// NewBorder(nil,nil,accent,btns,textBlock):
 			//   Objects[0] = textBlock  (center – stretches to fill)
@@ -522,8 +524,10 @@ func (u *appUI) buildSessionsTab() fyne.CanvasObject {
 			textBlock := c.Objects[0].(*fyne.Container)
 			textBlock.Objects[0].(*widget.Label).SetText(sess.Target.Name)
 			textBlock.Objects[1].(*widget.Label).SetText(
-				fmt.Sprintf("127.0.0.1:%d  ·  db: %s  ·  env: %s  ·  session: %s",
-					sess.Port, sess.Target.Database, sess.Target.Env, sess.SessionID),
+				fmt.Sprintf("%s  ·  %s", sess.Target.Env, sess.Target.Database),
+			)
+			textBlock.Objects[2].(*widget.Label).SetText(
+				fmt.Sprintf("127.0.0.1:%d", sess.Port),
 			)
 
 			btns := c.Objects[2].(*fyne.Container)
