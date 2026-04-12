@@ -1,4 +1,4 @@
-# pgcli-boundary
+# boundary-pg-my-cli
 
 A desktop GUI (Go + [Fyne](https://fyne.io/)) that collapses the entire workflow of connecting to a PostgreSQL, MySQL, or MariaDB database behind [HashiCorp Boundary](https://www.boundaryproject.io/). Many sessions from different environments can be managed in one place, and the app handles token management and session lifecycle for you.
 
